@@ -1,0 +1,8 @@
+title: Default Page
+sections:
+  pages:
+    type: pages
+    layout: cards
+    image:
+      cover: true
+      ration: 1/1

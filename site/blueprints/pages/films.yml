@@ -1,0 +1,11 @@
+Title: Films
+icon: 📹
+
+sections:
+  films:
+    type: pages
+    create: film
+    layout: cards
+    image:
+      cover: true
+      ration: 1/1

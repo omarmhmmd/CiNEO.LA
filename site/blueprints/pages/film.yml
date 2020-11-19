@@ -1,0 +1,115 @@
+Title: Film
+
+columns:
+  left:
+    width: 2/3
+    sections:
+      content:
+        type: fields
+        fields:
+          featured:
+            label: Featured Film?
+            type: toggle
+            text:
+              - "no"
+              - "yes"
+            width: 1/1
+          presenters:
+            label: Additional Presenters
+            type: structure
+            fields:
+              presenter:
+                type: text
+          release:
+            label: Release Date
+            type: date
+          end:
+            label: End Date
+            type: date
+          director:
+            type: text
+          directorBiography:
+            label: Director Biography
+            type: textarea
+            size: medium
+          location:
+            type: text
+          runtime:
+            type: text
+          synopsis:
+            type: textarea
+            size: medium
+          directorStatement:
+            label: Director Statement
+            type: textarea
+            size: medium
+          credits:
+            type: textarea
+            size: medium
+          press:
+            type: structure
+            fields:
+              title:
+                type: text
+              link:
+                type: url
+          externalLinks:
+            label: External Links
+            type: structure
+            fields:
+              title:
+                type: text
+              link:
+                type: url
+  right:
+    width: 1/3
+    fields:
+      filmEmbed:
+        label: Film Embed
+        type: textarea
+        size: medium
+      cover:
+        type: files
+        max: 1
+        layout: cards
+        image:
+          cover: true
+          ration: 1/1
+      firstColor:
+        type: color-palette
+        options:
+          - '#27C0CA'
+          - '#1175B7'
+          - '#AC72D6'
+          - '#E9AEE2'
+          - '#F3604B'
+          - '#D19563'
+          - '#B7A37E'
+          - '#DDB54F'
+          - '#CFCA57'
+          - '#7AAB5B'
+      secondColor:
+        type: color-palette
+        options:
+          - '#27C0CA'
+          - '#1175B7'
+          - '#AC72D6'
+          - '#E9AEE2'
+          - '#F3604B'
+          - '#D19563'
+          - '#B7A37E'
+          - '#DDB54F'
+          - '#CFCA57'
+          - '#7AAB5B'
+      metaImage:
+        label: Meta Image
+        type: files
+        max: 1
+        layout: cards
+        image:
+          cover: true
+          ration: 1/1
+      metaDescription:
+        label: Meta Description
+        type: textarea
+        size: small

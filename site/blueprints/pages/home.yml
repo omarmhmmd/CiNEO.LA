@@ -1,0 +1,14 @@
+title: Home
+icon: 🏠
+sections:
+  content:
+    type: fields
+    fields:
+      aboutCiNEOLA:
+        label: About CiNEOLA
+        type: textarea
+        size: medium
+      aboutArchive:
+        label: About Archive
+        type: textarea
+        size: medium

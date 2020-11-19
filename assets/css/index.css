@@ -1,0 +1,64 @@
+/**** FONTS ****/
+@font-face {
+  src: url(./fonts/Grotzec/GrotzecCondensed-Regular.otf);
+  font-family: "Grotzec";
+  font-weight: bold;
+}
+
+@font-face {
+  src: url(./fonts/Grotzec/GrotzecCondensed-Light.otf);
+  font-family: "Grotzec";
+  font-weight: normal;
+}
+
+@font-face {
+  src: url(./fonts/Nayarit/Nayarit_Condensed.otf);
+  font-family: "Nayarit";
+  font-weight: 100;
+}
+
+strong {
+  font-weight: bold;
+  text-transform: none;
+}
+
+em {
+  font-weight: bold;
+}
+
+p {
+  line-height: 2.5vh;
+}
+
+:root {
+  --grotzec-text-size: 1.125vw;
+}
+
+:root {
+  --mobile-text-size: 18px;
+}
+
+.grotzec {
+  font-family: Grotzec;
+  font-size: var(--grotzec-text-size);
+}
+/**** END FONTS ****/
+
+/**** COLORS ****/
+:root {
+  --cineola-black: #232323;
+}
+/**** COLORS ****/
+
+
+/**** LINKS ****/
+a {
+  color: #232323;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+/**** END LINKS ****/
