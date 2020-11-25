@@ -11,9 +11,6 @@
 
       <div class="square watch color-block">
         <a style="text-decoration:none" href="<?= $pages->find('films')->children()->first()->url(); ?>">
-          <div class="layer">
-
-          </div>
           <div class="watch-content">
             <h3 style="text-transform: none;">CiNEOLA Presents</h3>
             <h1><?= $pages->find('films')->children()->first()->title(); ?></h1>
@@ -48,11 +45,14 @@
         </button>
       </form>
       </div>
-      <div class="square social color-block">
-        <a target="_blank" href="https://www.instagram.com/cineolafilms/">Instagram</a>
-        <a target="_blank" href="https://twitter.com/Cineola">Twitter</a>
-        <a target="_blank" href="https://www.facebook.com/cineola">Facebook</a>
-        <a target="_blank" href="https://www.youtube.com/channel/UCzRZKq7tACqMvl_aQXA3qrw">Youtube</a>
+      <div class="square color-block">
+        <div class="social">
+          <a target="_blank" href="https://www.instagram.com/cineolafilms/">Instagram</a>
+          <a target="_blank" href="https://twitter.com/Cineola">Twitter</a>
+          <a target="_blank" href="https://www.facebook.com/cineola">Facebook</a>
+          <a target="_blank" href="https://www.youtube.com/channel/UCzRZKq7tACqMvl_aQXA3qrw">Youtube</a>
+          <a target="_blank" href="https://open.spotify.com/show/4nZSKVjU21F7rks0aqW2Bm">Spotify</a>
+        </div>
       </div>
     </div>
   </body>
@@ -140,6 +140,7 @@ body {
   .watch {
     background-image: url(<?php echo $pages->find('films')->children()->first()->cover()->toFile()->url() ?>);
     background-size: cover;
+    background-position: center;
     box-shadow: inset 0 0 0 1000px rgba(233,174,226,.75);
     height: 100%;
   }
@@ -192,8 +193,12 @@ body {
 
   .social {
     display: flex;
-    justify-content: space-around;
+    height: 75%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
   }
+  
   @media only screen and (max-width: 1024px) {
     .social {
       flex-direction: column;

@@ -27,11 +27,11 @@ em {
 }
 
 p {
-  line-height: 2.5vh;
+  line-height: 137.5%;
 }
 
 :root {
-  --grotzec-text-size: 1.125vw;
+  --grotzec-text-size: 0.95em;
 }
 
 :root {

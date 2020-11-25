@@ -16,9 +16,7 @@
               <?= $page->end()->toDate('d.m.y') ?>
           <?php endif ?>
         </div>
-        <div style="background-color: <?= $page->secondcolor() ?>" class="square watch">
-
-        </div>
+        <div style="background-color: <?= $page->secondcolor() ?>" class="square watch"></div>
         <div @mouseover="hover = true"
              @mouseleave="hover = false"
              style="background-color: <?= $page->secondcolor() ?>"
@@ -29,7 +27,9 @@
           </div>
         </div>
         <div style="background-color: <?= $page->firstcolor() ?>" class="square logo">
-          <img src="<?php echo url('assets/img/cineola-logo.svg') ?>" alt="">
+          <a href="<?= $site->homePage()->url()?>">
+            <img src="<?php echo url('assets/img/cineola-logo.svg') ?>" alt="">
+          </a>
         </div>
         <div style="background-color: <?= $page->firstcolor() ?>" class="square email">
           <form
@@ -47,11 +47,14 @@
           </button>
         </form>
         </div>
-        <div style="background-color: <?= $page->secondcolor() ?>" class="square social">
-          <a target="_blank" href="https://www.instagram.com/cineolafilms/">Instagram</a>
-          <a target="_blank" href="https://twitter.com/Cineola">Twitter</a>
-          <a target="_blank" href="https://www.facebook.com/cineola">Facebook</a>
-          <a target="_blank" href="https://www.youtube.com/channel/UCzRZKq7tACqMvl_aQXA3qrw">Youtube</a>
+        <div style="background-color: <?= $page->secondcolor() ?>" class="square social-container">
+          <div class="social-links">
+            <a target="_blank" href="https://www.instagram.com/cineolafilms/">Instagram</a>
+            <a target="_blank" href="https://twitter.com/Cineola">Twitter</a>
+            <a target="_blank" href="https://www.facebook.com/cineola">Facebook</a>
+            <a target="_blank" href="https://www.youtube.com/channel/UCzRZKq7tACqMvl_aQXA3qrw">Youtube</a>
+            <a target="_blank" href="https://open.spotify.com/show/4nZSKVjU21F7rks0aqW2Bm">Spotify</a>
+          </div>
         </div>
       </div>
       <div class="right">
@@ -69,11 +72,14 @@
             <h1 style="color: <?= $page->secondcolor() ?>"><?= $page->title() ?></h1>
           </div>
           <br>
-          <div class="film-embed" style="padding-top: 10vh;">
+          <div class="film-embed">
             <div class="film-embed-text">
-              <?= $page->location() ?>
-              <strong> <?= $page->title() ?> </strong>
-              <?= $page->director() ?>
+              <div class="">
+                <?= $page->location() ?>
+              </div>
+              <div class="">
+                <?= $page->director() ?>
+              </div>
             </div>
             <br>
             <div class="film-embed-iframe">
@@ -84,32 +90,29 @@
           <br>
           <div class="about-container">
             <br>
+            <br>
             <div class="about-container-text">
               <div class="about-synopsis">
                 <strong style="text-decoration: underline">Synopsis</strong>
                 <br>
-              <div style="padding-top: 0.5vh"> <?= $page->synopsis()->kt() ?></div>
+              <div style="padding-top: 1vh"> <?= $page->synopsis()->kt() ?></div>
               </div>
+              <br>
               <br>
               <?php if ($page->directorstatement()->isEmpty() === false): ?>
               <div class="about-statement">
                 <strong style="text-decoration: underline">Director's Statement</strong>
-                <div style="padding-top: 0.5vh"> <?= $page->directorstatement()->kt()->nl2br() ?></div>
+                <div style="padding-top: 1vh"> <?= $page->directorstatement()->kt()->nl2br() ?></div>
               </div>
-              <?php endif ?>
               <br>
-              <div class="about-credits">
-                  <strong style="text-decoration: underline">Credits</strong>
-                  <br>
-                  <div style="padding-top: 0.5vh"><?= $page->credits()->kt()?></div>
-              </div>
+              <?php endif ?>
               <br>
               <div class="about-links">
                 <?php if ($page->externallinks()->isEmpty() === false): ?>
                   <strong style="text-decoration: underline">Links</strong>
                   <ul>
                     <?php foreach ($page->externallinks()->toStructure() as $externallink): ?>
-                      <li>
+                      <li style="padding-top: 1vh">
                         <a target="_blank" href="<?= $externallink->link() ?>">
                           <?= $externallink->title() ?>
                         </a>
@@ -117,12 +120,14 @@
                     <?php endforeach ?>
                   </ul>
                 <?php endif ?>
-                <br>
+
                 <?php if ($page->press()->isEmpty() === false): ?>
+                  <br>
+                  <br>
                   <strong style="text-decoration: underline">Press</strong>
                   <ul>
                     <?php foreach ($page->press()->toStructure() as $press): ?>
-                    <li>
+                    <li style="padding-top: 1vh">
                       <a target="_blank" href="<?= $press->link() ?>">
                         <?= $press->title() ?>
                       </a>
@@ -130,8 +135,17 @@
                     <?php endforeach ?>
                   </ul>
                 <?php endif ?>
+                <br>
               </div>
-              <br>
+            </div>
+            <br>
+          </div>
+          <br>
+          <br>
+          <div class="about-credits-container">
+            <div class="about-credits">
+              <strong style="text-decoration: underline">Credits</strong>
+              <div style=""><?= $page->credits()->kt()?></div>
             </div>
           </div>
           <br>
@@ -202,6 +216,13 @@
         }
       }
 
+      .logo a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+      }
+
       .logo img {
         width: 70%;
       }
@@ -221,13 +242,20 @@
         }
       }
 
-      .social {
-        display: flex;
-        justify-content: space-around;
+      .social-container {
+        height: 100%;
       }
+
+      .social-links {
+        display: flex;
+        flex-direction: column;
+        height: 90%;
+        justify-content: space-around;
+        align-items: center;
+      }
+
       @media only screen and (max-width: 1024px) {
-        .social {
-          flex-direction: column;
+        .social-links {
           font-size: var(--mobile-text-size);
         }
       }
@@ -247,7 +275,6 @@
           width: 100%;
         }
       }
-
 
         .inner-right {
           display: flex;
@@ -277,7 +304,7 @@
 
             .header h1 {
               font-family: Nayarit;
-              font-size: 8vw;
+              font-size: 10em;
             }
             @media only screen and (max-width: 1024px) {
               .header h3 {
@@ -335,6 +362,7 @@
 
           .about-container {
             /* text-transform: uppercase; */
+            text-align: justify;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -343,7 +371,19 @@
           }
 
             .about-container-text {
-              width: 95%;
+              width: 92.5%;
+            }
+
+            .about-credits-container {
+              text-align: justify;
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              color: <?= $page->secondcolor() ?>;
+            }
+
+            .about-credits {
+              width: 92.5%;
             }
 
             .about-credits p {
@@ -357,11 +397,11 @@
                 margin-bottom: 2.5vh;
               }
 
-              .about-container-text {
+              .about-container-text, .about-credits-container {
                 font-size: var(--mobile-text-size);
               }
               p {
-                line-height: 3.5vh;
+                /* line-height: 3.5vh; */
               }
             }
 
