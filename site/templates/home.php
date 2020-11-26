@@ -13,7 +13,11 @@
         <a style="text-decoration:none" href="<?= $pages->find('films')->children()->first()->url(); ?>">
           <div class="watch-content">
             <h3 style="text-transform: none;">CiNEOLA Presents</h3>
-            <h1><?= $pages->find('films')->children()->first()->title(); ?></h1>
+            <?php foreach($pages->find('films')->children() as $item): ?>
+              <?php if ($item->featured()->toBool() === true): ?>
+                  <h1><?= $item->title(); ?></h1>
+              <?php endif ?>
+            <?php endforeach ?>
             <h3>Watch Now</h3>
           </div>
         </a>
@@ -67,14 +71,47 @@
   })
 </script>
 
+<script>
+  var color1;
+  var color2;
+
+  setInterval(changeColor(), 3000);
+
+  function changeColor(){
+  const root = document.documentElement;
+  const colors = ['27c0ca', 'd19563', '1175b7', 'b7a37e', 'ac72d6', 'ddb54f', 'e9aee2', 'cfca57', 'f3604b', '7aab5b']
+
+  randomNumbers()
+  function randomNumbers() {
+    const randomNumber1 = Math.floor(Math.random() * colors.length)
+    const randomNumber2 = Math.floor(Math.random() * colors.length)
+    if (randomNumber1 == randomNumber2) {
+      randomNumbers()
+    }
+    else {
+      color1 = colors[randomNumber1]
+      color2 = colors[randomNumber2]
+    }
+  }
+  root.style.setProperty('--color-primary', `#${color1}`)
+  root.style.setProperty('--color-secondary', `#${color2}`)
+  }
+  // 3. Events
+  window.setInterval(function(){
+  changeColor()
+  }, 10000);
+
+  window.addEventListener('load', changeColor)
+</script>
+
 <style>
 body {
-  background-color: #CFCA57;
+  background-color: var(--color-primary);
   color: var(--cineola-black);
 }
 
 .color-block {
-  background-color: #E9AEE2;
+  background-color: var(--color-secondary);
 }
 
 .left {
@@ -141,7 +178,7 @@ body {
     background-image: url(<?php echo $pages->find('films')->children()->first()->cover()->toFile()->url() ?>);
     background-size: cover;
     background-position: center;
-    box-shadow: inset 0 0 0 1000px rgba(233,174,226,.75);
+    box-shadow: inset 0 0 0 1000px  var(--color-secondary);
     height: 100%;
   }
 
@@ -160,15 +197,16 @@ body {
 
   .watch h1 {
     text-transform: none;
+    text-align: center;
     font-family: nayarit;
-    font-size: 5vw;
+    font-size: 3em;
   }
   @media only screen and (max-width: 1024px) {
     .watch h3 {
       font-size: var(--mobile-text-size);
     }
     .watch h1 {
-      font-size: 12.5vh;
+      /* font-size: 12.5vh; */
     }
   }
 
@@ -182,7 +220,7 @@ body {
   }
 
   #about-text {
-    width: 90%;
+    width: 92.5%;
     text-transform: none !important;
   }
   @media only screen and (max-width: 1024px) {
@@ -198,7 +236,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
   }
-  
+
   @media only screen and (max-width: 1024px) {
     .social {
       flex-direction: column;
@@ -260,7 +298,7 @@ body {
 
 .btn {
     width: 5.5vw;
-    color: #B7A37E;
+    color: var(--color-primary);
     display: flex;
     justify-content: center;
     font-size: var(--grotzec-text-size);
