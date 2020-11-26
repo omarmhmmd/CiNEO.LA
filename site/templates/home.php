@@ -10,7 +10,11 @@
       </div>
 
       <div class="square watch color-block">
-        <a style="text-decoration:none" href="<?= $pages->find('films')->children()->first()->url(); ?>">
+        <?php foreach($pages->find('films')->children() as $item): ?>
+          <?php if ($item->featured()->toBool() === true): ?>
+              <a style="text-decoration:none" href="<?= $item->url(); ?>">
+          <?php endif ?>
+        <?php endforeach ?>
           <div class="watch-content">
             <h3 style="text-transform: none;">CiNEOLA Presents</h3>
             <?php foreach($pages->find('films')->children() as $item): ?>
