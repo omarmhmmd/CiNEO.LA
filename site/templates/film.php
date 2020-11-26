@@ -303,6 +303,7 @@
             }
 
             .header h1 {
+              text-align: center;
               font-family: Nayarit;
               font-size: 10em;
             }
