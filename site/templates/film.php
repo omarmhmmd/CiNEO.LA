@@ -17,12 +17,12 @@
           <?php endif ?>
         </div>
         <div style="background-color: <?= $page->secondcolor() ?>" class="square watch"></div>
-        <div @mouseover="hover = true"
-             @mouseleave="hover = false"
+        <div @mouseover="hoverAbout = true"
+             @mouseleave="hoverAbout = false"
              style="background-color: <?= $page->secondcolor() ?>"
              class="square about">
-          <div v-if="!hover" id = about-button>About</div>
-          <div v-if="hover" id = about-text>
+          <div v-if="!hoverAbout" id = about-button>About</div>
+          <div v-if="hoverAbout" id = about-text>
             <?= $pages->find('home')->aboutcineola()->kt(); ?>
           </div>
         </div>
@@ -47,8 +47,10 @@
           </button>
         </form>
         </div>
-        <div style="background-color: <?= $page->secondcolor() ?>" class="square social-container">
-          <div class="social-links">
+        <div style="background-color: <?= $page->secondcolor() ?>" class="square about social-container" @mouseover="hoverSocial = true"
+             @mouseleave="hoverSocial = false">
+          <div v-if="!hoverSocial" id = about-button>Social</div>
+          <div v-if="hoverSocial" class="social-links">
             <a target="_blank" href="https://www.instagram.com/cineolafilms/">Instagram</a>
             <a target="_blank" href="https://twitter.com/Cineola">Twitter</a>
             <a target="_blank" href="https://www.facebook.com/cineola">Facebook</a>
@@ -104,11 +106,13 @@
                 <strong style="text-decoration: underline">Director's Statement</strong>
                 <div style="padding-top: 1vh"> <?= $page->directorstatement()->kt()->nl2br() ?></div>
               </div>
-              <br>
+              <!-- <br> -->
               <?php endif ?>
-              <br>
+              <!-- <br> -->
               <div class="about-links">
                 <?php if ($page->externallinks()->isEmpty() === false): ?>
+                  <br>
+                  <br>
                   <strong style="text-decoration: underline">Links</strong>
                   <ul>
                     <?php foreach ($page->externallinks()->toStructure() as $externallink): ?>
@@ -145,7 +149,7 @@
           <div class="about-credits-container">
             <div class="about-credits">
               <strong style="text-decoration: underline">Credits</strong>
-              <div style=""><?= $page->credits()->kt()?></div>
+              <div style="padding-top: 1vh"><?= $page->credits()->kt()?></div>
             </div>
           </div>
           <br>
@@ -160,7 +164,8 @@
   var app = new Vue({
     el: '#app',
     data: {
-      hover: false
+      hoverAbout: false,
+      hoverSocial: false
     }
   })
 </script>
@@ -212,7 +217,7 @@
       }
       @media only screen and (max-width: 1024px) {
         .date {
-          font-size: 7.5vh;
+          font-size: 3em;
         }
       }
 
@@ -286,7 +291,7 @@
         }
         @media only screen and (max-width: 1024px) {
           .inner-right {
-            padding-top: 10vh;
+            padding-top: 5vh;
           }
         }
 
@@ -313,7 +318,7 @@
               }
 
               .header h1 {
-                font-size: 12.5vh;
+                font-size: 7.5em;
               }
             }
 
@@ -425,6 +430,10 @@
       font-family: Grotzec;
       font-weight: 100;
       padding: 1vw;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border-radius: 0;
       border: 1px solid #232323;
       outline: none;
       color: var(--cineola-black);

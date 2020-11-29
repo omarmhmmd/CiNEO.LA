@@ -8,29 +8,28 @@
       <div class="square date push-left">
         Now Showing
       </div>
-
-      <div class="square watch color-block">
-        <?php foreach($pages->find('films')->children() as $item): ?>
-          <?php if ($item->featured()->toBool() === true): ?>
-              <a style="text-decoration:none" href="<?= $item->url(); ?>">
-          <?php endif ?>
-        <?php endforeach ?>
-          <div class="watch-content">
-            <h3 style="text-transform: none;">CiNEOLA Presents</h3>
-            <?php foreach($pages->find('films')->children() as $item): ?>
-              <?php if ($item->featured()->toBool() === true): ?>
-                  <h1><?= $item->title(); ?></h1>
-              <?php endif ?>
-            <?php endforeach ?>
-            <h3>Watch Now</h3>
-          </div>
-        </a>
-      </div>
-      <div @mouseover="hover = true"
-           @mouseleave="hover = false"
+      <?php foreach($pages->find('films')->children() as $item): ?>
+        <?php if ($item->featured()->toBool() === true): ?>
+            <a style="text-decoration:none" href="<?= $item->url(); ?>">
+        <?php endif ?>
+      <?php endforeach ?>
+        <div class="square watch color-block">
+            <div class="watch-content">
+              <h3 style="text-transform: none;">CiNEOLA Presents</h3>
+              <?php foreach($pages->find('films')->children() as $item): ?>
+                <?php if ($item->featured()->toBool() === true): ?>
+                    <h1><?= $item->title(); ?></h1>
+                <?php endif ?>
+              <?php endforeach ?>
+              <h3>Watch Now</h3>
+            </div>
+        </div>
+      </a>
+      <div @mouseover="hoverAbout = true"
+           @mouseleave="hoverAbout = false"
            class="square about color-block">
-        <div v-if="!hover" id = about-button>About</div>
-        <div v-if="hover" id = about-text>
+        <div v-if="!hoverAbout" id = about-button>About</div>
+        <div v-if="hoverAbout" id = about-text>
           <?= $pages->find('home')->aboutcineola()->kt(); ?>
         </div>
       </div>
@@ -53,15 +52,18 @@
         </button>
       </form>
       </div>
-      <div class="square color-block">
-        <div class="social">
-          <a target="_blank" href="https://www.instagram.com/cineolafilms/">Instagram</a>
-          <a target="_blank" href="https://twitter.com/Cineola">Twitter</a>
-          <a target="_blank" href="https://www.facebook.com/cineola">Facebook</a>
-          <a target="_blank" href="https://www.youtube.com/channel/UCzRZKq7tACqMvl_aQXA3qrw">Youtube</a>
-          <a target="_blank" href="https://open.spotify.com/show/4nZSKVjU21F7rks0aqW2Bm">Spotify</a>
-        </div>
-      </div>
+     <div @mouseover="hoverSocial = true"
+          @mouseleave="hoverSocial = false"
+          class="square about  color-block">
+       <div v-if="!hoverSocial" id = about-button>Social</div>
+       <div v-if="hoverSocial" class="social">
+         <a target="_blank" href="https://www.instagram.com/cineolafilms/">Instagram</a>
+         <a target="_blank" href="https://twitter.com/Cineola">Twitter</a>
+         <a target="_blank" href="https://www.facebook.com/cineola">Facebook</a>
+         <a target="_blank" href="https://www.youtube.com/channel/UCzRZKq7tACqMvl_aQXA3qrw">Youtube</a>
+         <a target="_blank" href="https://open.spotify.com/show/4nZSKVjU21F7rks0aqW2Bm">Spotify</a>
+       </div>
+     </div>
     </div>
   </body>
 </html>
@@ -70,7 +72,8 @@
   var app = new Vue({
     el: '#app',
     data: {
-      hover: false
+      hoverAbout: false,
+      hoverSocial: false
     }
   })
 </script>
@@ -174,7 +177,7 @@ body {
   }
   @media only screen and (max-width: 1024px) {
     .date {
-      font-size: 7.5vh;
+      font-size: 3em;
     }
   }
 
@@ -267,6 +270,10 @@ body {
     font-family: Grotzec;
     font-weight: 100;
     padding: 1vw;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
     border: 1px solid #232323;
     outline: none;
     color: var(--cineola-black);
