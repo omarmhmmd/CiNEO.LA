@@ -101,14 +101,6 @@ columns:
           - '#DDB54F'
           - '#CFCA57'
           - '#7AAB5B'
-      metaImage:
-        label: Meta Image
-        type: files
-        max: 1
-        layout: cards
-        image:
-          cover: true
-          ration: 1/1
       metaDescription:
         label: Meta Description
         type: textarea
