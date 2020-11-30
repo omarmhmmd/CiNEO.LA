@@ -4,66 +4,77 @@
     <?php snippet('header') ?>
   </head>
   <body>
-    <div id="app" class="left">
-      <div class="square date push-left">
-        Now Showing
-      </div>
-      <?php foreach($pages->find('films')->children() as $item): ?>
-        <?php if ($item->featured()->toBool() === true): ?>
-            <a style="text-decoration:none" href="<?= $item->url(); ?>">
-        <?php endif ?>
-      <?php endforeach ?>
-        <div class="square watch color-block">
-            <div class="watch-content">
-              <h3 style="text-transform: none;">CiNEOLA Presents</h3>
-              <?php foreach($pages->find('films')->children() as $item): ?>
-                <?php if ($item->featured()->toBool() === true): ?>
-                    <h1><?= $item->title(); ?></h1>
-                <?php endif ?>
-              <?php endforeach ?>
-              <h3>Watch Now</h3>
-            </div>
+    <div class="container">
+      <div id="app" class="left">
+        <div class="square date push-left">
+          <div style="color: <?= $page->secondcolor() ?>"><span style="text-transform: none !important">CiNEOLA</span>
+            <?php if ($page->presenters()->isEmpty() === false): ?>
+                <?php foreach ($page->presenters()->toStructure() as $presenter): ?>
+                    + <?= $presenter->presenter() ?>
+                <?php endforeach ?>
+            <?php endif ?>
+            Presents
+          </div>
+          <?php foreach($pages->find('films')->children() as $item): ?>
+            <?php if ($item->featured()->toBool() === true): ?>
+                <a style="text-decoration:none" href="<?= $item->url(); ?>">
+                  <h1><?= $item->title(); ?></h1>
+                </a>
+            <?php endif ?>
+          <?php endforeach ?>
         </div>
-      </a>
-      <div @mouseover="hoverAbout = true"
-           @mouseleave="hoverAbout = false"
-           class="square about color-block">
-        <div v-if="!hoverAbout" id = about-button>About</div>
-        <div v-if="hoverAbout" id = about-text>
-          <?= $pages->find('home')->aboutcineola()->kt(); ?>
+        <?php foreach($pages->find('films')->children() as $item): ?>
+          <?php if ($item->featured()->toBool() === true): ?>
+              <a style="text-decoration:none" href="<?= $item->url(); ?>">
+          <?php endif ?>
+        <?php endforeach ?>
+          <div class="square watch color-block">
+              <div class="watch-content">
+                <h3>Watch Now</h3>
+              </div>
+          </div>
+        </a>
+        <div @mouseover="hoverAbout = true"
+             @mouseleave="hoverAbout = false"
+             class="square about color-block">
+          <div v-if="!hoverAbout" id = about-button>About</div>
+          <div v-if="hoverAbout" id = about-text>
+            <?= $pages->find('home')->aboutcineola()->kt(); ?>
+          </div>
         </div>
-      </div>
-      <div class="square logo push-right">
-        <img src="<?php echo url('assets/img/cineola-logo.svg') ?>" alt="">
-      </div>
-      <div class="square email push-left">
-        <form
-        class="form validate"
-        action="https://cineo.us8.list-manage.com/subscribe/post?u=60b50e59f99c5078b67ff4cbb&amp;id=acc3e72c0c"
-        method="post"
-        id="mc-embedded-subscribe-form"
-        name="mc-embedded-subscribe-form"
-        target="_blank"
-        novalidate
-        >
-        <input type="text" value name="EMAIL" placeholder="EMAIL" required />
-        <button id="mc-embedded-subscribe" class="btn" type="submit">
-          SUBSCRIBE
-        </button>
-      </form>
-      </div>
-     <div @mouseover="hoverSocial = true"
-          @mouseleave="hoverSocial = false"
-          class="square about  color-block">
-       <div v-if="!hoverSocial" id = about-button>Social</div>
-       <div v-if="hoverSocial" class="social">
-         <a target="_blank" href="https://www.instagram.com/cineolafilms/">Instagram</a>
-         <a target="_blank" href="https://twitter.com/Cineola">Twitter</a>
-         <a target="_blank" href="https://www.facebook.com/cineola">Facebook</a>
-         <a target="_blank" href="https://www.youtube.com/channel/UCzRZKq7tACqMvl_aQXA3qrw">Youtube</a>
-         <a target="_blank" href="https://open.spotify.com/show/4nZSKVjU21F7rks0aqW2Bm">Spotify</a>
+        <div class="square logo push-right">
+          <img src="<?php echo url('assets/img/cineola-logo.svg') ?>" alt="">
+        </div>
+        <div class="square email push-left">
+          <form
+          class="form validate"
+          action="https://cineo.us8.list-manage.com/subscribe/post?u=60b50e59f99c5078b67ff4cbb&amp;id=acc3e72c0c"
+          method="post"
+          id="mc-embedded-subscribe-form"
+          name="mc-embedded-subscribe-form"
+          target="_blank"
+          novalidate
+          >
+          <input type="text" value name="EMAIL" placeholder="EMAIL" required />
+          <button id="mc-embedded-subscribe" class="btn" type="submit">
+            SUBSCRIBE
+          </button>
+        </form>
+        </div>
+       <div @mouseover="hoverSocial = true"
+            @mouseleave="hoverSocial = false"
+            class="square about  color-block">
+         <div v-if="!hoverSocial" id = about-button>Social</div>
+         <div v-if="hoverSocial" class="social">
+           <a target="_blank" href="https://www.instagram.com/cineolafilms/">Instagram</a>
+           <a target="_blank" href="https://twitter.com/Cineola">Twitter</a>
+           <a target="_blank" href="https://www.facebook.com/cineola">Facebook</a>
+           <a target="_blank" href="https://www.youtube.com/channel/UCzRZKq7tACqMvl_aQXA3qrw">Youtube</a>
+           <a target="_blank" href="https://open.spotify.com/show/4nZSKVjU21F7rks0aqW2Bm">Spotify</a>
+         </div>
        </div>
-     </div>
+      </div>
+      <?php snippet('archive') ?>
     </div>
   </body>
 </html>
@@ -121,17 +132,32 @@ body {
   background-color: var(--color-secondary);
 }
 
-.left {
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
   position: fixed;
+  /* align-items: center; */
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    position: relative;
+    flex-direction: column;
+  }
+}
+
+.left {
+  width: 100%;
+  height: 100%;
   color: var(--cineola-black);
   display: grid;
   justify-content: center;
   align-content: center;
   grid-template-columns: repeat(2, 16.75vw);
   grid-template-rows: repeat(3, 15vw);
-  width: 100%;
-  height: 100%;
 }
+
 @media only screen and (max-width: 1024px) {
   .left {
     position: relative;
@@ -171,12 +197,20 @@ body {
   }
 
   .date {
-    font-family: Nayarit;
-    text-transform: none !important;
-    font-size: 5vw;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+  }
+
+  .date h1 {
+    text-transform: none;
+    font-family: nayarit;
+    font-size: 4em;
   }
   @media only screen and (max-width: 1024px) {
-    .date {
+    .date h1 {
       font-size: 3em;
     }
   }
@@ -218,16 +252,17 @@ body {
   }
 
   .logo img {
-    width: 100%;
+    width: 15vw;
   }
   @media only screen and (max-width: 1024px) {
     .logo img {
-      width: 80%;
+      width: 10em;
     }
   }
 
   #about-text {
-    width: 92.5%;
+    width: 95%;
+    /* text-align: center; */
     text-transform: none !important;
   }
   @media only screen and (max-width: 1024px) {

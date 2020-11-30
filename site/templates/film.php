@@ -229,11 +229,11 @@
       }
 
       .logo img {
-        width: 70%;
+        width: 15vw;
       }
       @media only screen and (max-width: 1024px) {
         .logo img {
-          width: 80%;
+          width: 10em;
         }
       }
 

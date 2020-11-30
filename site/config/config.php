@@ -37,7 +37,7 @@ return [
                 'site_name' => $site->title(),
                 'description' => $page->metadescription(),
                 'namespace:image' => function ($page) {
-                  $image = $page->metaimage()->toFile();
+                  $image = $page->cover()->toFile();
                   return [
                       'image' => $image->url(),
                       'alt' => $image->alt()
@@ -51,7 +51,7 @@ return [
               'title' => $page->title(),
               'description' => $page->metadescription(),
               'namespace:image' => function ($page) {
-                $image = $page->metaimage()->toFile();
+                $image = $page->cover()->toFile();
                 return [
                     'image' => $image->url(),
                     'alt' => $image->alt()
