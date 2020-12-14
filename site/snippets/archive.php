@@ -103,7 +103,7 @@
   function openNav() {
     if (open == false) {
       open = true;
-      document.getElementById("archive-anim").style.width = "50%";
+      document.getElementById("archive-anim").style.width = "51.75%";
     }
     else {
       document.getElementById("archive-anim").style.width = "0%";
@@ -115,7 +115,6 @@
 <style>
 
 .archive-tab {
-  
   height: 100%;
   display: flex;
   justify-content: center;
