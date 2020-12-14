@@ -1,6 +1,9 @@
-<div class="archive">
+<div onclick="openNav()" class="archive-tab">
+  <p>Archivo</p>
+</div>
+<div class="archive" id = "archive-anim">
   <div class="archive-block archive-title">
-    Films
+    Archivo
   </div>
   <div class="archive-block square">
     <div id = "about-text">
@@ -9,24 +12,59 @@
       </p>
     </div>
   </div>
-
   <?php $index = 1; foreach($pages->find('films')->children() as $film): $index++; ?>
-      <?php if ($index % 2 == 0): ?>
-        <!-- LEFT ALIGNED -->
-        <a style="text-decoration:none" href="<?= $film->url(); ?>">
-          <div style="background-image: url(<?= $film->cover()->toFile()->url() ?>)" class="archive-block archive-image"></div>
-        </a>
+      <?php if ($index % 2 != 0): ?>
+        <?php if ($film->featured()->toBool() === false): ?>
+          <!-- LEFT ALIGNED -->
+          <a style="text-decoration:none" href="<?= $film->url(); ?>">
+            <div style="background-image: url(<?= $film->cover()->toFile()->url() ?>)" class="archive-block archive-image"></div>
+          </a>
+          <div class="archive-block">
+            <a style="text-decoration:none" href="<?= $film->url(); ?>">
+              <div class="archive-block-film">
+                <div class="top">
+                  <div style="text-align: left" class="film-title">
+                    <?= $film->title(); ?>
+                  </div>
+                </div>
+                <div class="bottom">
+                  <div class="meta-data">
+                    <p style="text-align: left">
+                      <?= $film->director(); ?>
+                      <br>
+                      <span style="text-transform: uppercase; font-weight: bold"><?= $film->location(); ?></span>
+                    </p>
+                  </div>
+                  <div class="film-date">
+                    <?php if ($film->featured()->toBool() === true): ?>
+                      Now Showing
+                    <?php endif ?>
+                    <?php if ($film->featured()->toBool() === false): ?>
+                        <?= $film->end()->toDate('d.m.y') ?>
+                    <?php endif ?>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        <?php endif ?>
+      <?php endif ?>
+    <!-- END LEFT ALIGNED -->
+
+    <?php if ($index % 2 == 0): ?>
+      <?php if ($film->featured()->toBool() === false): ?>
+        <!-- RIGHT ALIGNED -->
         <div class="archive-block">
           <a style="text-decoration:none" href="<?= $film->url(); ?>">
             <div class="archive-block-film">
               <div class="top">
-                <div style="text-align: left" class="film-title">
-                  <?= $film->title(); ?>
+                <div style="text-align: right" class="film-title">
+                    <?= $film->title(); ?>
                 </div>
               </div>
-              <div class="bottom">
+              <div style="flex-direction: row-reverse" class="bottom">
                 <div class="meta-data">
-                  <p style="text-align: left">
+                  <p style="text-align: right">
                     <?= $film->director(); ?>
                     <br>
                     <span style="text-transform: uppercase; font-weight: bold"><?= $film->location(); ?></span>
@@ -46,44 +84,10 @@
             </div>
           </a>
         </div>
-      <?php endif ?>
-    <!-- END LEFT ALIGNED -->
-
-    <?php if ($index % 2 != 0): ?>
-      <!-- RIGHT ALIGNED -->
-      <div class="archive-block">
         <a style="text-decoration:none" href="<?= $film->url(); ?>">
-          <div class="archive-block-film">
-            <div class="top">
-              <div style="text-align: right" class="film-title">
-                  <?= $film->title(); ?>
-              </div>
-            </div>
-            <div style="flex-direction: row-reverse" class="bottom">
-              <div class="meta-data">
-                <p style="text-align: right">
-                  <?= $film->director(); ?>
-                  <br>
-                  <span style="text-transform: uppercase; font-weight: bold"><?= $film->location(); ?></span>
-                  <br>
-                  <?= $film->runtime(); ?>
-                </p>
-              </div>
-              <div class="film-date">
-                <?php if ($film->featured()->toBool() === true): ?>
-                  Now Showing
-                <?php endif ?>
-                <?php if ($film->featured()->toBool() === false): ?>
-                    <?= $film->end()->toDate('d.m.y') ?>
-                <?php endif ?>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      <a style="text-decoration:none" href="<?= $film->url(); ?>">
-        <div style="background-image: url(<?= $film->cover()->toFile()->url() ?>)" class="archive-block archive-image"></div>
-      </a>      <!-- END RIGHT ALIGNED -->
+          <div style="background-image: url(<?= $film->cover()->toFile()->url() ?>)" class="archive-block archive-image"></div>
+        </a>      <!-- END RIGHT ALIGNED -->
+      <?php endif ?>
     <?php endif ?>
   <?php endforeach ?>
 
@@ -94,14 +98,58 @@
 
     }
   })
+
+  var open = false;
+  function openNav() {
+    if (open == false) {
+      open = true;
+      document.getElementById("archive-anim").style.width = "50%";
+    }
+    else {
+      document.getElementById("archive-anim").style.width = "0%";
+      open = false;
+    }
+  }
 </script>
 
 <style>
 
+.archive-tab {
+  
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5%;
+  position: relative;
+  background-color: var(--color-secondary);
+}
+
+@media only screen and (max-width: 1024px) {
+  .archive-tab {
+    display: none;
+  }
+}
+
+
+.archive-tab:hover {
+  cursor: pointer;
+}
+
+.archive-tab p {
+  font-family: Grotzec;
+  text-transform: uppercase;
+  font-size: var(--grotzec-text-size);
+  font-weight: 100;
+  transform: rotate(-90deg);
+}
 .archive {
+  transition: 1s;
+  transition-timing-function: ease-in-out;
   overflow-y: scroll;
   overflow-x: hidden;
-  width: 50%;
+  position: relative;
+  width: 0%;
   color: var(--cineola-black);
   display: grid;
   grid-template-columns: repeat(2, 16.75vw);

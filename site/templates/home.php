@@ -7,14 +7,17 @@
     <div class="container">
       <div id="app" class="left">
         <div class="square date push-left">
-          <div style="color: <?= $page->secondcolor() ?>"><span style="text-transform: none !important">CiNEOLA</span>
+          <div style="color: <?= $page->secondcolor() ?>">
+            Now Showing
+          </div>
+          <!-- <div style="color: <?= $page->secondcolor() ?>"><span style="text-transform: none !important">CiNEOLA</span>
             <?php if ($page->presenters()->isEmpty() === false): ?>
                 <?php foreach ($page->presenters()->toStructure() as $presenter): ?>
                     + <?= $presenter->presenter() ?>
                 <?php endforeach ?>
             <?php endif ?>
             Presents
-          </div>
+          </div> -->
           <?php foreach($pages->find('films')->children() as $item): ?>
             <?php if ($item->featured()->toBool() === true): ?>
                 <a style="text-decoration:none" href="<?= $item->url(); ?>">
@@ -25,14 +28,16 @@
         </div>
         <?php foreach($pages->find('films')->children() as $item): ?>
           <?php if ($item->featured()->toBool() === true): ?>
-              <a style="text-decoration:none" href="<?= $item->url(); ?>">
-          <?php endif ?>
-        <?php endforeach ?>
-          <div class="square watch color-block">
-              <div class="watch-content">
+            <a style="text-decoration:none" href="<?= $item->url(); ?>">
+            <div @mouseover="hoverFeatured = true"
+                 @mouseleave="hoverFeatured = false"
+                 class="square watch">
+              <div v-show="hoverFeatured" class="watch-content">
                 <h3>Watch Now</h3>
               </div>
-          </div>
+            </div>
+          <?php endif ?>
+          <?php endforeach ?>
         </a>
         <div @mouseover="hoverAbout = true"
              @mouseleave="hoverAbout = false"
@@ -84,6 +89,7 @@
     el: '#app',
     data: {
       hoverAbout: false,
+      hoverFeatured: false,
       hoverSocial: false
     }
   })
@@ -219,7 +225,7 @@ body {
     background-image: url(<?php echo $pages->find('films')->children()->first()->cover()->toFile()->url() ?>);
     background-size: cover;
     background-position: center;
-    box-shadow: inset 0 0 0 1000px  var(--color-secondary);
+    /* box-shadow: inset 0 0 0 1000px  var(--color-secondary); */
     height: 100%;
   }
 
@@ -229,6 +235,8 @@ body {
   }
 
   .watch-content {
+    background-color: var(--color-secondary);
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
