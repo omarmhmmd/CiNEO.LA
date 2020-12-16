@@ -2,7 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <?= css('assets/css/reset.css') ?>
 <?= css('assets/css/index.css') ?>
-<link rel="icon" href="/assets/favicon.png" >
+<link rel="icon" href="/assets/favicon.png">
 <title>CiNEOLA | <?= $page->title() ?></title>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->

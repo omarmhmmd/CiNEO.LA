@@ -13,7 +13,8 @@
             Now Showing
           <?php endif ?>
           <?php if ($page->featured()->toBool() === false): ?>
-              <?= $page->end()->toDate('d.m.y') ?>
+            <!-- Archivo -->
+              <?= $page->release()->toDate('d.m.y') ?>
           <?php endif ?>
         </div>
         <div style="background-color: <?= $page->secondcolor() ?>" class="square watch"></div>

@@ -40,7 +40,7 @@
                       Now Showing
                     <?php endif ?>
                     <?php if ($film->featured()->toBool() === false): ?>
-                        <?= $film->end()->toDate('d.m.y') ?>
+                        <?= $film->release()->toDate('d.m.y') ?>
                     <?php endif ?>
                   </div>
                 </div>
@@ -77,7 +77,7 @@
                     Now Showing
                   <?php endif ?>
                   <?php if ($film->featured()->toBool() === false): ?>
-                      <?= $film->end()->toDate('d.m.y') ?>
+                      <?= $film->release()->toDate('d.m.y') ?>
                   <?php endif ?>
                 </div>
               </div>

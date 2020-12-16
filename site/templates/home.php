@@ -2,6 +2,19 @@
 <html lang="en" dir="ltr">
   <head>
     <?php snippet('header') ?>
+    <!-- Twitter Meta -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CiNEOLA: Latinoamérica on film" />
+    <meta name="twitter:url" content="https://www.cineo.la/" />
+    <meta name="twitter:description" content="CiNEOLA is a platform for Latin American stories, connecting audiences with diverse representations of Latinoamérica on film." />
+    <meta name="twitter:image" content="<?php echo url('assets/img/Twitter-card_CINEOLA.jpg') ?>" />
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="CiNEOLA: Latinoamérica on film" />
+    <meta property="og:url" content="https://www.cineo.la/" />
+    <meta property="og:description" content="CiNEOLA is a platform for Latin American stories, connecting audiences with diverse representations of Latinoamérica on film." />
+    <meta property="og:image" content="<?php echo url('assets/img/Twitter-card_CINEOLA.jpg') ?>" />
+    <meta property="og:type" content=”article” />
   </head>
   <body>
     <div class="container">
