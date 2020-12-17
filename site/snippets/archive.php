@@ -230,10 +230,17 @@
 }
 
 .archive-image {
-  /* background-image: url(<?php echo $pages->find('films')->children()->first()->cover()->toFile()->url() ?>); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background-color:  var(--color-primary);
   background-size: cover;
   background-position: center;
-  /* box-shadow: inset 0 0 0 1000px  var(--color-secondary); */
   height: 100%;
+}
+
+.archive-image:hover {
+  opacity: 0.25;
 }
 </style>
