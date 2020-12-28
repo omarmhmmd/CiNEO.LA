@@ -1,3 +1,5 @@
-# CiNEOLA v5
+# CiNEOLA
 
-cineo.la brought to you by Omar Mohammad and Daniel Diaz.
+CiNEOLA is a platform for Latin American stories, connecting audiences with diverse representations of Latinoamérica on film.
+
+Founded by Dianel Diaz.
