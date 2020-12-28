@@ -66,7 +66,7 @@
             <h3 style="color: <?= $page->secondcolor() ?>"><span style="text-transform: none !important">CiNEOLA</span>
               <?php if ($page->presenters()->isEmpty() === false): ?>
                   <?php foreach ($page->presenters()->toStructure() as $presenter): ?>
-                      + <?= $presenter->presenter() ?> Presents
+                      + <?= $presenter->presenter() ?> Present
                   <?php endforeach ?>
               <?php endif ?>
               <?php if ($page->presenters()->isEmpty() === true): ?>
