@@ -8,88 +8,102 @@
   <div class="archive-block square">
     <div id = "about-text">
       <p>
-        <!-- <?= $pages->find('home')->aboutarchive()->kt(); ?> -->
+        <!-- <?= $pages
+          ->find("home")
+          ->aboutarchive()
+          ->kt() ?> -->
       </p>
     </div>
   </div>
-  <?php $index = 1; foreach($pages->find('films')->children() as $film): $index++; ?>
+  <?php
+  $index = 1;
+  foreach ($pages->find("films")->children() as $film):
+    $index++; ?>
       <?php if ($index % 2 != 0): ?>
         <?php if ($film->featured()->toBool() === false): ?>
           <!-- LEFT ALIGNED -->
-          <a style="text-decoration:none" href="<?= $film->url(); ?>">
-            <div style="background-image: url(<?= $film->cover()->toFile()->url() ?>)" class="archive-block archive-image"></div>
+          <a style="text-decoration:none" href="<?= $film->url() ?>">
+            <div style="background-image: url(<?= $film
+              ->cover()
+              ->toFile()
+              ->url() ?>)" class="archive-block archive-image"></div>
           </a>
           <div class="archive-block">
-            <a style="text-decoration:none" href="<?= $film->url(); ?>">
+            <a style="text-decoration:none" href="<?= $film->url() ?>">
               <div class="archive-block-film">
                 <div class="top">
                   <div style="text-align: left" class="film-title">
-                    <?= $film->title(); ?>
+                    <?= $film->title() ?>
                   </div>
                 </div>
                 <div class="bottom">
                   <div class="meta-data">
                     <p style="text-align: left">
-                      <?= $film->director(); ?>
+                      <?= $film->director() ?>
                       <br>
-                      <span style="text-transform: uppercase; font-weight: bold"><?= $film->location(); ?></span>
+                      <span style="text-transform: uppercase; font-weight: bold"><?= $film->location() ?></span>
                     </p>
                   </div>
                   <div class="film-date">
                     <?php if ($film->featured()->toBool() === true): ?>
                       Now Showing
-                    <?php endif ?>
+                    <?php endif; ?>
                     <?php if ($film->featured()->toBool() === false): ?>
-                        <?= $film->release()->toDate('d.m.y') ?>
-                    <?php endif ?>
+                        <?= $film->release()->toDate("d.m.y") ?>
+                    <?php endif; ?>
                   </div>
                 </div>
               </div>
             </a>
           </div>
-        <?php endif ?>
-      <?php endif ?>
+        <?php endif; ?>
+      <?php endif; ?>
     <!-- END LEFT ALIGNED -->
 
     <?php if ($index % 2 == 0): ?>
       <?php if ($film->featured()->toBool() === false): ?>
         <!-- RIGHT ALIGNED -->
         <div class="archive-block">
-          <a style="text-decoration:none" href="<?= $film->url(); ?>">
+          <a style="text-decoration:none" href="<?= $film->url() ?>">
             <div class="archive-block-film">
               <div class="top">
                 <div style="text-align: right" class="film-title">
-                    <?= $film->title(); ?>
+                    <?= $film->title() ?>
                 </div>
               </div>
               <div style="flex-direction: row-reverse" class="bottom">
                 <div class="meta-data">
                   <p style="text-align: right">
-                    <?= $film->director(); ?>
+                    <?= $film->director() ?>
                     <br>
-                    <span style="text-transform: uppercase; font-weight: bold"><?= $film->location(); ?></span>
+                    <span style="text-transform: uppercase; font-weight: bold"><?= $film->location() ?></span>
                     <br>
-                    <?= $film->runtime(); ?>
+                    <?= $film->runtime() ?>
                   </p>
                 </div>
                 <div class="film-date">
                   <?php if ($film->featured()->toBool() === true): ?>
                     Now Showing
-                  <?php endif ?>
+                  <?php endif; ?>
                   <?php if ($film->featured()->toBool() === false): ?>
-                      <?= $film->release()->toDate('d.m.y') ?>
-                  <?php endif ?>
+                      <?= $film->release()->toDate("d.m.y") ?>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
           </a>
         </div>
-        <a style="text-decoration:none" href="<?= $film->url(); ?>">
-          <div style="background-image: url(<?= $film->cover()->toFile()->url() ?>)" class="archive-block archive-image"></div>
+        <a style="text-decoration:none" href="<?= $film->url() ?>">
+          <div style="background-image: url(<?= $film
+            ->cover()
+            ->toFile()
+            ->url() ?>)" class="archive-block archive-image"></div>
         </a>      <!-- END RIGHT ALIGNED -->
-      <?php endif ?>
-    <?php endif ?>
-  <?php endforeach ?>
+      <?php endif; ?>
+    <?php endif; ?>
+  <?php
+  endforeach;
+  ?>
 
 <script>
   var app = new Vue({
@@ -100,12 +114,20 @@
   })
 
   var open = false;
+    
   function openNav() {
     if (open == false) {
       open = true;
       document.getElementById("archive-anim").style.width = "51.75%";
     }
     else {
+      document.getElementById("archive-anim").style.width = "0%";
+      open = false;
+    }
+  }
+  
+  function closeNav() {
+    if (open == true) {
       document.getElementById("archive-anim").style.width = "0%";
       open = false;
     }
@@ -175,6 +197,7 @@
   display: flex;
   width: 100%;
   justify-content: center;
+  align-items: center;
 }
 
 .archive-block:nth-child(4n+1),.archive-block:nth-child(4n)  {
@@ -184,8 +207,8 @@
 .archive-block-film {
   display: flex;
   width: 85%;
-  height: 100%;
-  justify-content: space-around;
+  height: 90%;
+  justify-content: space-between;
   align-content: center;
   flex-direction: column;
 }
@@ -199,7 +222,7 @@
 .film-title {
   text-transform: none;
   font-family: nayarit;
-  font-size: 2.75em;
+  font-size: 4vw;
 }
 
 .film-date {
@@ -226,7 +249,7 @@
   align-items: center;
   font-family: Nayarit;
   text-transform: none !important;
-  font-size: 4em;
+  font-size: 5vw;
 }
 
 .archive-image {

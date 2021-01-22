@@ -18,7 +18,7 @@
   </head>
   <body>
     <div class="container">
-      <div id="app" class="left">
+      <div  onclick="closeNav()" id="app" class="left">
         <div class="square date push-left">
           <div style="color: <?= $page->secondcolor() ?>">
             Now Showing
@@ -226,7 +226,7 @@ body {
   .date h1 {
     text-transform: none;
     font-family: nayarit;
-    font-size: 4em;
+    font-size: 4vw;
   }
   @media only screen and (max-width: 1024px) {
     .date h1 {

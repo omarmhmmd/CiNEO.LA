@@ -234,7 +234,7 @@
       }
       @media only screen and (max-width: 1024px) {
         .logo img {
-          width: 10em;
+          width: 10vh;
         }
       }
 
@@ -319,7 +319,7 @@
               }
 
               .header h1 {
-                font-size: 7.5em;
+                font-size: 8.5vh;
               }
             }
 
