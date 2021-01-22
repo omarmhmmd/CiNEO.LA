@@ -20,7 +20,7 @@
     <div class="container">
       <div  onclick="closeNav()" id="app" class="left">
         <div class="square date push-left">
-          <div style="color: <?= $page->secondcolor() ?>">
+          <div class="now-showing"style="color: <?= $page->secondcolor() ?>">
             Now Showing
           </div>
           <!-- <div style="color: <?= $page->secondcolor() ?>"><span style="text-transform: none !important">CiNEOLA</span>
@@ -222,6 +222,10 @@ body {
     text-align: center;
     width: 100%;
   }
+  
+  .now-showing {
+    font-size: 18px;
+  }
 
   .date h1 {
     text-transform: none;
@@ -230,7 +234,7 @@ body {
   }
   @media only screen and (max-width: 1024px) {
     .date h1 {
-      font-size: 3em;
+      font-size: 10em;
     }
   }
 
@@ -277,7 +281,7 @@ body {
   }
   @media only screen and (max-width: 1024px) {
     .logo img {
-      width: 10em;
+      width: 15vh;
     }
   }
 

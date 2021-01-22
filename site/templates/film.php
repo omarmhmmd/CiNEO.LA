@@ -220,7 +220,7 @@
       }
       @media only screen and (max-width: 1024px) {
         .date {
-          font-size: 3em;
+          font-size: 5vh;
         }
       }
 
@@ -236,7 +236,7 @@
       }
       @media only screen and (max-width: 1024px) {
         .logo img {
-          width: 10vh;
+          width: 15vh;
         }
       }
 
@@ -318,6 +318,7 @@
             @media only screen and (max-width: 1024px) {
               .header h3 {
                 font-size: var(--mobile-text-size);
+                padding: 18px;
               }
 
               .header h1 {

@@ -164,6 +164,7 @@
   font-weight: 100;
   transform: rotate(-90deg);
 }
+
 .archive {
   transition: 1s;
   transition-timing-function: ease-in-out;
@@ -225,6 +226,12 @@
   font-size: 4vw;
 }
 
+@media only screen and (max-width: 1024px) {
+  .film-title {
+    font-size: 7.5vh;
+  }
+}
+
 .film-date {
   font-family: Grotzec;
   padding-bottom: 3px;
@@ -233,10 +240,22 @@
   font-weight: 100;
 }
 
+@media only screen and (max-width: 1024px) {
+  .film-date {
+    font-size: var(--mobile-text-size);
+  }
+}
+
 .meta-data {
   list-style: none;
   font-family: Grotzec;
   font-size: var(--grotzec-text-size);
+}
+
+@media only screen and (max-width: 1024px) {
+  .meta-data {
+    font-size: var(--mobile-text-size);
+  }
 }
 
 .archive-block p {
@@ -250,6 +269,12 @@
   font-family: Nayarit;
   text-transform: none !important;
   font-size: 5vw;
+}
+
+@media only screen and (max-width: 1024px) {
+  .archive-title {
+    font-size: 5vh;
+  }
 }
 
 .archive-image {
